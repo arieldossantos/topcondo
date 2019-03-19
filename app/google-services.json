@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "630536824967",
+    "firebase_url": "https://topcondo-c3a39.firebaseio.com",
+    "project_id": "topcondo-c3a39",
+    "storage_bucket": "topcondo-c3a39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630536824967:android:1010b944427f81d6",
+        "android_client_info": {
+          "package_name": "io.github.arieldossantos.topcondo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630536824967-f0onvlorsd4for56br0cl21u46rmnbri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOhg0upZnY82uioG13fySPJESrfBEUaZ8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
