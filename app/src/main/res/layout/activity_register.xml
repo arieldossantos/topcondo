@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20sp"
+    tools:context=".app.Register"
+    android:id="@+id/relativeLayout">
+
+
+    <EditText
+        android:id="@+id/nome"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginTop="43dp"
+        android:hint="Seu nome"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginTop="8dp"
+        android:hint="Seu endereço de e-mail"
+        app:layout_constraintTop_toBottomOf="@+id/nome" />
+
+
+    <EditText
+        android:id="@+id/senha"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginTop="8dp"
+        android:hint="Sua senha"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/confirmSenha"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="213dp"
+        android:hint="Repita sua senha"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/senha" />
+
+    <Button
+        android:text="Cadastrar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
