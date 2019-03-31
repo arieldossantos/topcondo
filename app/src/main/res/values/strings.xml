@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">TopCondo</string>
-    <string name="title_activity_login">Entrar</string>
 
     <!-- Strings related to login -->
+    <string name="title_activity_login">Entrar</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Senha</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -12,4 +12,5 @@
     <string name="error_incorrect_password">Senha incorreta</string>
     <string name="error_field_required">Este campo é requerido</string>
     <string name="permission_rationale">"Permissões de contatos são requeridas para o auto-completar do e-mail"</string>
+    <string name="title_activity_register">Registrar</string>
 </resources>
