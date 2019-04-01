@@ -3,6 +3,7 @@ package io.github.arieldossantos.topcondo.app
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.widget.ContentLoadingProgressBar
 import com.google.firebase.FirebaseApp
 import io.github.arieldossantos.topcondo.R
 import io.github.arieldossantos.topcondo.app.controller.UserControl
@@ -29,11 +30,14 @@ class LoginActivity : Activity() {
         }
 
         botaoLogar.setOnClickListener {
-            val usuario = email.text
-            val senha = senha.text
+            val loading = ContentLoadingProgressBar(this)
+                loading.show();
+            val usuario = email.text.toString()
+            val senha = senha.text.toString()
 
-            var user = UserControl()
+            var user = UserControl(usuario, senha)
 
+            user.logar(this)
         }
     }
 }
