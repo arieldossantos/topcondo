@@ -35,6 +35,9 @@ class UserControl(private val usuario: String, private val senha: String) {
                 }
     }
 
+    /**
+     * Função de registro no app
+     */
     fun registrar(context: Context) {
         firebaseAuth.createUserWithEmailAndPassword(usuario, senha)
                 .addOnCompleteListener {
@@ -46,6 +49,16 @@ class UserControl(private val usuario: String, private val senha: String) {
                         Toast.makeText(context, "Falha ao criar o usuário", Toast.LENGTH_SHORT).show()
                     }
                 }
+    }
+
+    /**
+     * Função responsável por checar se já existe usuário logado no app ou não
+     */
+    fun hasUser() : Boolean {
+        if(firebaseAuth.currentUser != null) {
+            return true
+        }
+        return false
     }
 
     companion object {

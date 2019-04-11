@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import io.github.arieldossantos.topcondo.R
+import io.github.arieldossantos.topcondo.app.controller.ListViewAdapter
 import kotlinx.android.synthetic.main.activity_main_page.*
 
 class MainPage : AppCompatActivity() {
@@ -27,7 +28,7 @@ class MainPage : AppCompatActivity() {
                             dados.add(document.get("nome").toString())
                         }
 
-                        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dados)
+                        val adapter = ListViewAdapter(this, R.layout.list_lista_de_servicos, dados)
                         listaDeServicos.adapter = adapter
                     } else {
                         Log.w(TAG, "Erro ao obter os serviços. ", it.exception)

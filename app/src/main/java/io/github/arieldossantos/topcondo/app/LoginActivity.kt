@@ -40,4 +40,14 @@ class LoginActivity : Activity() {
             user.logar(this)
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        var user = UserControl("", "")
+        if(user.hasUser()) {
+            var intent = Intent(this, MainPage::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 }
