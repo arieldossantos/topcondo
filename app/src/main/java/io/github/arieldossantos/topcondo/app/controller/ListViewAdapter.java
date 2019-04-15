@@ -30,23 +30,15 @@ public class ListViewAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        // If holder not exist then locate all view from UI file.
         if (convertView == null) {
-            // inflate UI from XML file
             convertView = inflater.inflate(R.layout.list_lista_de_servicos, parent, false);
-            // get all UI view
             holder = new ViewHolder(convertView);
-            // set tag for holder
             convertView.setTag(holder);
         } else {
-            // if holder created, get tag from view
             holder = (ViewHolder) convertView.getTag();
         }
 
         holder.servico.setText(getItem(position));
-        //get first letter of each String item
-        String firstLetter = String.valueOf(getItem(position).charAt(0));
-
         return convertView;
     }
 
