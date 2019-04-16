@@ -30,8 +30,6 @@ class LoginActivity : Activity() {
         }
 
         botaoLogar.setOnClickListener {
-            val loading = ContentLoadingProgressBar(this)
-                loading.show();
             val usuario = email.text.toString()
             val senha = senha.text.toString()
 
