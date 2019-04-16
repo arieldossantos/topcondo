@@ -2,6 +2,7 @@ package io.github.arieldossantos.topcondo.app.controller;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.app.Activity;
 import android.support.v4.app.FragmentManager;
@@ -64,7 +65,9 @@ public class ListViewAdapter extends ArrayAdapter<Object> {
                 Toast.makeText(activityContext, "Reserva para " + valuesMap.get("nome"), Toast.LENGTH_SHORT).show();
 
                 FragmentManager fm = activity.getSupportFragmentManager();
-                Reservar reservarDialog = Reservar.Companion.newInstance("Reservar");
+                Bundle extras = new Bundle();
+                extras.putString("idservico", valuesMap.get("key").toString());
+                Reservar reservarDialog = Reservar.Companion.newInstance("Reservar", extras);
                 reservarDialog.show(fm, "reservar_dialog");
             }
         });

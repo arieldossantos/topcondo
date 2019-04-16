@@ -77,6 +77,7 @@ class UserControl(private val usuario: String, private val senha: String) {
      */
     fun hasUser() : Boolean {
         if(firebaseAuth.currentUser != null) {
+            user = firebaseAuth.currentUser!!
             return true
         }
         return false
