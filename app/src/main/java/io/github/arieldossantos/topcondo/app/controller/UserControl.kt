@@ -1,5 +1,7 @@
 package io.github.arieldossantos.topcondo.app.controller
 
+import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -20,14 +22,21 @@ class UserControl(private val usuario: String, private val senha: String) {
      *
      */
     fun logar(context: Context) {
+        val dialog = ProgressDialog(context)
+            dialog.isIndeterminate = true
+            dialog.setTitle("Por favor, aguarde!")
+            dialog.setMessage("Estamos verificando o seu usuário e senha.")
+
         firebaseAuth.signInWithEmailAndPassword(usuario, senha)
                 .addOnCompleteListener {
+                    dialog.dismiss()
                     if(it.isSuccessful) {
                         Log.d(TAG, "Sucesso ao realizar login")
                         user = firebaseAuth.currentUser!!
                         val intent = Intent(context, MainPage::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY)
                         context.startActivity(intent)
+                        (context as Activity).finish()
                     } else {
                         Log.w(TAG,"Falha ao realizar login", it.exception)
                         Toast.makeText(context, "Login ou senha inválidos", Toast.LENGTH_SHORT).show()
@@ -39,8 +48,14 @@ class UserControl(private val usuario: String, private val senha: String) {
      * Função de registro no app
      */
     fun registrar(context: Context) {
+        val dialog = ProgressDialog(context)
+            dialog.isIndeterminate = true
+            dialog.setTitle("Por favor, aguarde!")
+            dialog.setMessage("Estamos registrando você em nosso app.")
+
         firebaseAuth.createUserWithEmailAndPassword(usuario, senha)
                 .addOnCompleteListener {
+                    dialog.dismiss()
                     if(it.isSuccessful) {
                         Log.d(TAG, "Usuário criado")
                         Toast.makeText(context, "Usuário criado com sucesso!", Toast.LENGTH_LONG).show()
