@@ -44,6 +44,7 @@ class Reservar: DialogFragment() {
     fun checarDiasIndisponiveis() {
         db.collection("reservas")
                 .whereEqualTo("service", this.idservico)
+                .whereEqualTo("date", this.date)
                 .get()
                 .addOnCompleteListener {
                     if(it.isSuccessful) {
@@ -55,7 +56,7 @@ class Reservar: DialogFragment() {
                                     .setTitle("Opa!")
                                     .setMessage("Já existe uma reserva neste dia.")
                                     .show()
-                            reservarButton.isEnabled = false
+                            reservarButton.isEnabled = true
 
                         }
                     }
@@ -88,6 +89,7 @@ class Reservar: DialogFragment() {
             date.set(Calendar.HOUR_OF_DAY, 0)
             date.set(Calendar.MINUTE, 0)
             date.set(Calendar.SECOND, 0)
+            date.set(Calendar.MILLISECOND, 0)
 
         this.date = date.timeInMillis
 
@@ -101,6 +103,7 @@ class Reservar: DialogFragment() {
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             var calendar = Calendar.getInstance()
             calendar.set(year, month, dayOfMonth, 0, 0, 0)
+            calendar.set(Calendar.MILLISECOND, 0)
             this.date = calendar.timeInMillis
         }
 
