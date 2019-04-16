@@ -4,7 +4,8 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.app.Activity;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +27,16 @@ import java.util.HashMap;
 import java.util.List;
 
 import io.github.arieldossantos.topcondo.R;
+import io.github.arieldossantos.topcondo.app.Reservar;
 
 public class ListViewAdapter extends ArrayAdapter<Object> {
-    private Context activity;
+    private Context activityContext;
     private List<Object> listaServicos;
     private FirebaseStorage storage;
 
     public ListViewAdapter(@NonNull Context context, int resource, List<Object> objects) {
         super(context, resource, objects);
-        this.activity = context;
+        this.activityContext = context;
         this.listaServicos = objects;
         this.storage = FirebaseStorage.getInstance();
     }
@@ -43,7 +45,7 @@ public class ListViewAdapter extends ArrayAdapter<Object> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
-        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) activityContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.list_lista_de_servicos, parent, false);
             holder = new ViewHolder(convertView);
@@ -52,13 +54,26 @@ public class ListViewAdapter extends ArrayAdapter<Object> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        HashMap<String, Object> valuesMap = (HashMap<String, Object>) getItem(position);
+        final AppCompatActivity activity = (AppCompatActivity) this.activityContext;
+        final HashMap<String, Object> valuesMap = (HashMap<String, Object>) getItem(position);
+
+        //Adiciona onclicklistener no click do serviço para abrir o dialog fragment
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(activityContext, "Reserva para " + valuesMap.get("nome"), Toast.LENGTH_SHORT).show();
+
+                FragmentManager fm = activity.getSupportFragmentManager();
+                Reservar reservarDialog = Reservar.Companion.newInstance("Reservar");
+                reservarDialog.show(fm, "reservar_dialog");
+            }
+        });
+
 
         //Insere imagem e texto no listview
         holder.servico.setText(valuesMap.get("nome").toString());
         StorageReference reference = this.storage.getReference().child("servicos/" + valuesMap.get("key").toString() + ".png");
 
-        final Activity activity = (Activity) this.activity;
         //Cria arquivo temporário
         try {
             final File localFile = new File(getContext().getCacheDir() + "/" + valuesMap.get("key").toString() + ".png");

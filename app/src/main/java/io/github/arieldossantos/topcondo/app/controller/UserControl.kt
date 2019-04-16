@@ -22,10 +22,11 @@ class UserControl(private val usuario: String, private val senha: String) {
      *
      */
     fun logar(context: Context) {
-        val dialog = ProgressDialog(context)
+        val dialog = ProgressDialog(context as Activity)
             dialog.isIndeterminate = true
             dialog.setTitle("Por favor, aguarde!")
             dialog.setMessage("Estamos verificando o seu usuário e senha.")
+            dialog.show()
 
         firebaseAuth.signInWithEmailAndPassword(usuario, senha)
                 .addOnCompleteListener {
@@ -52,6 +53,7 @@ class UserControl(private val usuario: String, private val senha: String) {
             dialog.isIndeterminate = true
             dialog.setTitle("Por favor, aguarde!")
             dialog.setMessage("Estamos registrando você em nosso app.")
+            dialog.show()
 
         firebaseAuth.createUserWithEmailAndPassword(usuario, senha)
                 .addOnCompleteListener {
@@ -64,6 +66,10 @@ class UserControl(private val usuario: String, private val senha: String) {
                         Toast.makeText(context, "Falha ao criar o usuário", Toast.LENGTH_SHORT).show()
                     }
                 }
+    }
+
+    fun sair () {
+        firebaseAuth.signOut()
     }
 
     /**

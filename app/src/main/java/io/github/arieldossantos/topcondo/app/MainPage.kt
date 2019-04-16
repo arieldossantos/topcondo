@@ -1,15 +1,19 @@
 package io.github.arieldossantos.topcondo.app
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.ProgressBar
 import com.google.firebase.firestore.FirebaseFirestore
 import io.github.arieldossantos.topcondo.R
 import io.github.arieldossantos.topcondo.app.controller.ListViewAdapter
+import android.view.Menu
+import android.view.MenuItem
+import io.github.arieldossantos.topcondo.app.controller.UserControl
 import kotlinx.android.synthetic.main.activity_main_page.*
+import kotlinx.android.synthetic.main.content_main_page.*
+
 
 class MainPage : AppCompatActivity() {
     val TAG = "MAINPAGE"
@@ -25,6 +29,10 @@ class MainPage : AppCompatActivity() {
         progress.setMessage("Aguarde enquanto os serviços são carregados")
         progress.isIndeterminate = true
         progress.show()
+
+        //Cria o context menu
+        setSupportActionBar(toolbar)
+        registerForContextMenu(toolbar)
 
         db.collection("servicos")
                 .get()
@@ -44,5 +52,25 @@ class MainPage : AppCompatActivity() {
                         Log.w(TAG, "Erro ao obter os serviços. ", it.exception)
                     }
                 }
+    }
+
+    //Cria o context menu
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.context_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.getItemId()
+
+        if(id == R.id.sair) {
+            UserControl("", "").sair()
+            var intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        return true
+
     }
 }
