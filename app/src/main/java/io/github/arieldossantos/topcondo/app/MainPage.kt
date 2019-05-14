@@ -69,6 +69,10 @@ class MainPage : AppCompatActivity() {
             var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }else if(id == R.id.menuReservas) {
+            var intent = Intent(this, ReservaActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         return true
