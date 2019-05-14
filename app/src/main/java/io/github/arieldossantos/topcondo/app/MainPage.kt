@@ -28,6 +28,7 @@ class MainPage : AppCompatActivity() {
         progress.setTitle("Carregando serviços...")
         progress.setMessage("Aguarde enquanto os serviços são carregados")
         progress.isIndeterminate = true
+        progress.setCancelable(false)
         progress.show()
 
         //Cria o context menu
