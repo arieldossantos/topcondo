@@ -72,7 +72,9 @@ class MainPage : AppCompatActivity() {
         }else if(id == R.id.menuReservas) {
             var intent = Intent(this, ReservaActivity::class.java)
             startActivity(intent)
-            finish()
+        }else if(id == R.id.mapa) {
+            var intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
         }
 
         return true

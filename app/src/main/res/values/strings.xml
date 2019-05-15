@@ -15,4 +15,5 @@
     <string name="permission_rationale">"Permissões de contatos são requeridas para o auto-completar do e-mail"</string>
     <string name="title_activity_register">Registrar</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_maps">Sua localização</string>
 </resources>
