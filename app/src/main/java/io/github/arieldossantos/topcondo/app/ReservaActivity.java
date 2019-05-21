@@ -1,10 +1,13 @@
 package io.github.arieldossantos.topcondo.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -34,6 +37,8 @@ public class ReservaActivity extends AppCompatActivity {
         final ListView listareserva = (ListView)
                 findViewById(R.id.listareserva);
 
+
+
         //Criando a referência para a collection reservas
         CollectionReference reservaRef = db.collection("reservas");
 
@@ -47,7 +52,7 @@ public class ReservaActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         arrayReserva.add(
                                 "Reservado para o dia: " +
-                                        ReservaActivity.getDate(Long.parseLong(document.getData().get("date").toString()), "DD/MM/YYYY"));
+                                        ReservaActivity.getDate(Long.parseLong(document.getData().get("date").toString()), "dd/MM/yyyy"));
                         Log.d(TAG, document.getId() + " => " + document.getData());
                     }
                     final ArrayAdapter<String> adaptador =
@@ -56,7 +61,24 @@ public class ReservaActivity extends AppCompatActivity {
                                     android.R.layout.simple_list_item_1,
                                     arrayReserva
                             );
+
                     listareserva.setAdapter(adaptador);
+
+                    listareserva.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            String texto = (String) parent.getItemAtPosition(position);
+
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_SEND);
+                            intent.putExtra(Intent.EXTRA_TEXT, "Olá, estou com um horário " + texto.toLowerCase() + " no TopCondo!\n\rJuntos e shallow now \uD83C\uDF1F!");
+                            intent.setType("text/plain");
+                            startActivity(Intent.createChooser(
+                                    intent,
+                                    "Compartilhar via..."
+                            ));
+                        }
+                    });
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
@@ -77,12 +99,9 @@ public class ReservaActivity extends AppCompatActivity {
      * @param dateFormat Date format
      * @return String representing date in specified format
      */
-    public static String getDate(long milliSeconds, String dateFormat)
-    {
-        // Create a DateFormatter object for displaying date in specified format.
+    public static String getDate(long milliSeconds, String dateFormat) {
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
 
-        // Create a calendar object that will convert the date and time value in milliseconds to date.
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(milliSeconds);
         return formatter.format(calendar.getTime());

@@ -5,15 +5,38 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:paddingTop="20sp"
-    tools:context=".app.Register"
-    android:background="@drawable/background">
+    tools:context=".app.Register">
+
+    <ImageView
+        android:id="@+id/imageViewImagem"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/nome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.481"
+        tools:srcCompat="@drawable/profile_pic"
+        android:background="@drawable/profile_pic"
+        android:src="@drawable/profile_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHeight_min="150dp"/>
 
     <EditText
         android:id="@+id/nome"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="176dp"
         android:background="#FFF"
         android:cursorVisible="true"
         android:ems="10"
@@ -28,21 +51,22 @@
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="#FFF"
         android:cursorVisible="true"
         android:ems="10"
         android:hint="Seu endereço de e-mail"
         android:padding="10sp"
         android:textCursorDrawable="@null"
-        app:layout_constraintTop_toBottomOf="@+id/nome" />
+        app:layout_constraintTop_toBottomOf="@+id/nome"
+        tools:layout_editor_absoluteX="0dp" />
 
 
     <EditText
         android:id="@+id/senha"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="#FFF"
         android:cursorVisible="true"
         android:ems="10"
@@ -57,7 +81,7 @@
         android:id="@+id/confirmSenha"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="213dp"
+        android:layout_marginBottom="8dp"
         android:background="#FFF"
         android:cursorVisible="true"
         android:ems="10"
@@ -65,18 +89,20 @@
         android:inputType="textPassword"
         android:padding="10sp"
         android:textCursorDrawable="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/senha"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintVertical_bias="0.082" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:layout_marginTop="328dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="204dp"
         android:text="Cadastrar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/senha" />
+
 
 </android.support.constraint.ConstraintLayout>

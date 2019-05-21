@@ -69,22 +69,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun createLocationRequest() {
-        // 1
         locationRequest = LocationRequest()
-        // 2
         locationRequest.interval = 10000
-        // 3
         locationRequest.fastestInterval = 5000
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
         val builder = LocationSettingsRequest.Builder()
                 .addLocationRequest(locationRequest)
 
-        // 4
         val client = LocationServices.getSettingsClient(this)
         val task = client.checkLocationSettings(builder.build())
 
-        // 5
         task.addOnSuccessListener {
             locationUpdateState = true
             startLocationUpdates()
