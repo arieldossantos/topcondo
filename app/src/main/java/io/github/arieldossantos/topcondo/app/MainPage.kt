@@ -24,7 +24,7 @@ class MainPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
-        val progress = ProgressDialog(this)
+        val progress = ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT)
         progress.setTitle("Carregando serviços...")
         progress.setMessage("Aguarde enquanto os serviços são carregados")
         progress.isIndeterminate = true

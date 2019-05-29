@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
+        android:background="@drawable/bgblur"
         android:alpha="0.7"
         />
 
@@ -20,7 +20,7 @@
         android:textSize="34sp"
         android:layout_marginTop="30sp"
         android:fontFamily="sans-serif-smallcaps"
-        android:textColor="#000"
+        android:textColor="#fff"
         />
 
     <EditText

@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.content.Intent
 import android.graphics.Bitmap
 import android.app.Activity
+import android.graphics.drawable.BitmapDrawable
 
 
 class Register : AppCompatActivity() {
@@ -41,7 +42,7 @@ class Register : AppCompatActivity() {
 
 
             val user = UserControl(usuario.trim(), password)
-            user.registrar(this)
+            user.registrar(this, nome.text.toString(), (imageViewImagem.drawable as BitmapDrawable).bitmap)
         }
     }
 
